@@ -7,7 +7,7 @@
 //   UPSTASH_REDIS_REST_TOKEN  Upstash REST token
 //   WEBHOOK_SECRET            signing secret from paw-house.shop webhook settings
 //   PRODUCT_IMAGE_DEFAULT     fallback product image URL
-//   PRODUCT_IMAGE_DM_FWYYAOOHEE   image URL for the Hisense chest freezer product
+//   PRODUCT_IMAGE_DM_4566H0DMF2   image URL for the Hisense QLED TV product
 //
 // Paw House sends:  X-Paw-House-Signature: <hmac-sha256-hex>
 // Signature is computed by Paw House as:  HMAC-SHA256(rawBody, signingSecret)
@@ -231,7 +231,7 @@ function renderOrderPlainText(order) {
     `- Delivery Method: Courier`,
     ``,
     `ITEMS IN THIS ORDER:`,
-    `- 1x Hisense 198L Chest Freezer with Seamless Frame & Boundless Door - R 999.00`,
+    `- 1x Hisense 55" Q6Q 4K QLED Smart TV with Quantum Dot & Dolby Vision - R 999.00`,
     ``,
     `PAYMENT SUMMARY:`,
     `- Subtotal: R 999.00`,
@@ -548,7 +548,7 @@ async function handler(req, res) {
   const productName  = item.title || item.name || item.productName || item.product_title
                     || (payload.product && payload.product.name)
                     || payload.productTitle || payload.product_title
-                    || 'Hisense 198L Chest Freezer with Seamless Frame & Boundless Door';
+                    || 'Hisense 55" Q6Q 4K QLED Smart TV with Quantum Dot & Dolby Vision';
   const productPrice = item.totalPrice != null
                     ? item.totalPrice
                     : (item.price != null ? item.price : (payload.amount != null ? payload.amount : 999));

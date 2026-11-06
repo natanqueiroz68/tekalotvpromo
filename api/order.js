@@ -181,7 +181,7 @@ function renderOrderPlainText(order) {
     `- Delivery Method: Courier`,
     ``,
     `ITEMS IN THIS ORDER:`,
-    `- 1x Hisense 198L Chest Freezer with Seamless Frame & Boundless Door - R 999.00`,
+    `- 1x Hisense 55" Q6Q 4K QLED Smart TV with Quantum Dot & Dolby Vision - R 999.00`,
     ``,
     `PAYMENT SUMMARY:`,
     `- Subtotal: R 999.00`,
@@ -332,7 +332,7 @@ function publicView(order) {
   const dDate = new Date(order.delivery_date || (pDate.getTime() + 8 * 86400000));
   return {
     order_id:                order.order_id,
-    product_name:            order.product_name || 'Hisense 198L Chest Freezer with Seamless Frame & Boundless Door',
+    product_name:            order.product_name || 'Hisense 55" Q6Q 4K QLED Smart TV with Quantum Dot & Dolby Vision',
     product_price:           order.product_price || 999,
     currency:                order.currency || 'ZAR',
     received_date:           order.received_date || pDate.toISOString(),
@@ -469,7 +469,7 @@ module.exports = async function handler(req, res) {
         customer_email: (req.query.to || req.query.email || '').trim(),
         customer_phone: '',
         product_id: 'dm-4566h0dmf2',
-        product_name: 'Hisense 198L Chest Freezer with Seamless Frame & Boundless Door',
+        product_name: 'Hisense 55" Q6Q 4K QLED Smart TV with Quantum Dot & Dolby Vision',
         product_price: 999,
         currency: 'ZAR',
         product_image: 'https://takealotpromos-black.vercel.app/produto.png',
