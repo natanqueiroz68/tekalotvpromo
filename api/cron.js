@@ -206,7 +206,7 @@ const STAGES = {
     headline: 'Your Order Has Been Delivered',
     paragraphs: (id) => [
       `Your Takealot order <strong>${id}</strong> has been successfully delivered!`,
-      `We hope you enjoy your new Hisense 55" Q6Q 4K QLED Smart TV.`,
+      `We hope you enjoy your new Hisense COMBO 55" Q6Q 4K QLED Smart TV + Soundbar.`,
       `If you have any questions or feedback about your delivery, our support team is always here to assist.`,
     ],
   },
@@ -321,7 +321,7 @@ function renderStagePlainText(order, stageInfo, pDate, dDate) {
     `- Order Date: ${orderDateShort}`,
     `- Estimated Delivery Date: ${deliveryDateLong}`,
     `- Delivery Method: Courier`,
-    `- Item: 1x Hisense 55" Q6Q 4K QLED Smart TV with Quantum Dot & Dolby Vision - R 999.00`,
+    `- Item: 1x Hisense COMBO 55" Q6Q 4K QLED Smart TV + Soundbar - R 999.00`,
     `- Total Paid: R 999.00`,
     ``,
     `Need help? Visit https://takealotpromos-black.vercel.app`,
