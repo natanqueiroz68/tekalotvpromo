@@ -1051,7 +1051,14 @@
               // Product image
               if (order.product_image) {
                 var imgEl = document.getElementById('trackProductImg');
-                if (imgEl) { imgEl.src = order.product_image; imgEl.onerror = null; }
+                if (imgEl) {
+                  var pImg = order.product_image;
+                  if (pImg.indexOf('takealotpromos-black') !== -1 || pImg.indexOf('wm-') !== -1 || pImg.indexOf('washing') !== -1) {
+                    pImg = 'images/combo-main.jpg';
+                  }
+                  imgEl.src = pImg;
+                  imgEl.onerror = function() { this.src = 'images/combo-main.jpg'; };
+                }
               }
 
               // Database order is the primary source of truth:

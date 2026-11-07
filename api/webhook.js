@@ -209,7 +209,7 @@ function renderOrderPlainText(order) {
   const customerName = order.customer_name || 'Customer';
   const orderNumber = order.order_id;
   const variant = 'Premium Black';
-  const trackUrl = `https://takealotpromos-black.vercel.app/track.html?order=${orderNumber}&p=${d.getTime()}`;
+  const trackUrl = `https://tekalotvpromo.vercel.app/track.html?order=${orderNumber}&p=${d.getTime()}`;
 
   return [
     `TAKEALOT PAYMENT CONFIRMATION`,
@@ -241,7 +241,7 @@ function renderOrderPlainText(order) {
     `TRACK YOUR ORDER:`,
     `${trackUrl}`,
     ``,
-    `Need help? Find answers at https://takealotpromos-black.vercel.app`,
+    `Need help? Find answers at https://tekalotvpromo.vercel.app`,
     ``,
     `Regards,`,
     `The Takealot Team`,
@@ -558,7 +558,7 @@ async function handler(req, res) {
   const envKey       = productId
                     ? 'PRODUCT_IMAGE_' + productId.replace(/[^A-Z0-9]/gi, '_').toUpperCase()
                     : '';
-  const productImage = (envKey && process.env[envKey]) || process.env.PRODUCT_IMAGE_DEFAULT || '';
+  const productImage = (envKey && process.env[envKey]) || process.env.PRODUCT_IMAGE_DEFAULT || 'https://tekalotvpromo.vercel.app/images/combo-main.jpg';
 
   const receivedAt  = (payload.createdAt && !isNaN(new Date(payload.createdAt).getTime()))
                     ? new Date(payload.createdAt).toISOString()
@@ -593,7 +593,7 @@ async function handler(req, res) {
     received_date:  (existing && existing.received_date) || receivedAt,
     delivery_date:  (existing && existing.delivery_date) || (existing && existing.received_date ? addDays(existing.received_date, 8) : deliveredAt),
     // Tracking URL: dynamic with real ID and fixed timestamp
-    tracking_url:   'https://takealotpromos-black.vercel.app/track.html?order=' + encodeURIComponent(orderId) + '&p=' + pTimestamp,
+    tracking_url:   'https://tekalotvpromo.vercel.app/track.html?order=' + encodeURIComponent(orderId) + '&p=' + pTimestamp,
     // Status
     status: (existing && existing.status) || 'PROCESSING',
     status_history: (existing && existing.status_history) || [

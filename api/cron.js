@@ -300,7 +300,7 @@ function renderStagePlainText(order, stageInfo, pDate, dDate) {
   const orderNumber = order.order_id;
   const orderDateShort = formatOrderDateShort(pDate);
   const deliveryDateLong = formatDeliveryDateLong(dDate);
-  const trackUrl = `https://takealotpromos-black.vercel.app/track.html?order=${orderNumber}&p=${pDate.getTime()}`;
+  const trackUrl = `https://tekalotvpromo.vercel.app/track.html?order=${orderNumber}&p=${pDate.getTime()}`;
 
   const paragraphs = stageInfo.paragraphs(orderNumber, deliveryDateLong)
     .map((p) => p.replace(/<[^>]+>/g, ''));
@@ -324,7 +324,7 @@ function renderStagePlainText(order, stageInfo, pDate, dDate) {
     `- Item: 1x Hisense COMBO 55" Q6Q 4K QLED Smart TV + Soundbar - R 1,597.00`,
     `- Total Paid: R 1,597.00`,
     ``,
-    `Need help? Visit https://takealotpromos-black.vercel.app`,
+    `Need help? Visit https://tekalotvpromo.vercel.app`,
     ``,
     `Regards,`,
     `The Takealot Team`,

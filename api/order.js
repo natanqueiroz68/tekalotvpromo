@@ -47,7 +47,15 @@ async function kv_get(key) {
   if (!res.ok) throw new Error('Redis GET failed: ' + res.status);
   const data = await res.json();
   if (!data.result) return null;
-  try { return JSON.parse(data.result); } catch { return null; }
+  try {
+    let parsed = JSON.parse(data.result);
+    if (typeof parsed === 'string') {
+      try { parsed = JSON.parse(parsed); } catch {}
+    }
+    return parsed;
+  } catch {
+    return null;
+  }
 }
 
 async function kv_set(key, value) {
@@ -159,7 +167,7 @@ function renderOrderPlainText(order) {
   const deliveryDateLong = formatDeliveryDateLong(dDate);
   const customerName = order.customer_name || 'Customer';
   const orderNumber = order.order_id;
-  const trackUrl = `https://takealotpromos-black.vercel.app/track.html?order=${orderNumber}&p=${pDate.getTime()}`;
+  const trackUrl = `https://tekalotvpromo.vercel.app/track.html?order=${orderNumber}&p=${pDate.getTime()}`;
 
   return [
     `TAKEALOT PAYMENT CONFIRMATION`,
@@ -191,7 +199,7 @@ function renderOrderPlainText(order) {
     `TRACK YOUR ORDER:`,
     `${trackUrl}`,
     ``,
-    `Need help? Find answers at https://takealotpromos-black.vercel.app`,
+    `Need help? Find answers at https://tekalotvpromo.vercel.app`,
     ``,
     `Regards,`,
     `The Takealot Team`,
@@ -330,6 +338,14 @@ const ORDER_ID_RE = /^[A-Za-z0-9_\-]{4,80}$/;
 function publicView(order) {
   const pDate = new Date(order.received_date || Date.now());
   const dDate = new Date(order.delivery_date || (pDate.getTime() + 8 * 86400000));
+  let pImg = order.product_image;
+  if (!pImg || pImg.includes('takealotpromos-black') || pImg.includes('hisense-bundle') || pImg.includes('wm-') || pImg.includes('washing')) {
+    pImg = 'https://tekalotvpromo.vercel.app/images/combo-main.jpg';
+  }
+  let tUrl = order.tracking_url;
+  if (tUrl && tUrl.includes('takealotpromos-black')) {
+    tUrl = tUrl.replace('takealotpromos-black.vercel.app', 'tekalotvpromo.vercel.app');
+  }
   return {
     order_id:                order.order_id,
     product_name:            order.product_name || 'Hisense COMBO 55" Q6Q 4K QLED Smart TV + Soundbar',
@@ -341,9 +357,9 @@ function publicView(order) {
     order_date_formatted:    formatOrderDateShort(pDate),
     delivery_date_formatted: formatDeliveryDateShort(dDate),
     delivery_date_long:      formatDeliveryDateLong(dDate),
-    tracking_url:            order.tracking_url,
+    tracking_url:            tUrl,
     status:                  order.status || 'PROCESSING',
-    product_image:           order.product_image || 'https://takealotpromos-black.vercel.app/produto.png',
+    product_image:           pImg,
     email_status:            order.email_status || null,
     email_sent_at:           order.email_sent_at || null,
     status_history: (order.status_history || []).map(function(e) {
@@ -472,10 +488,10 @@ module.exports = async function handler(req, res) {
         product_name: 'Hisense COMBO 55" Q6Q 4K QLED Smart TV + Soundbar',
         product_price: 1597,
         currency: 'ZAR',
-        product_image: 'https://takealotpromos-black.vercel.app/produto.png',
+        product_image: 'https://tekalotvpromo.vercel.app/images/combo-main.jpg',
         received_date: purchaseIso,
         delivery_date: deliveryIso,
-        tracking_url: 'https://takealotpromos-black.vercel.app/track.html?order=' + encodeURIComponent(orderId) + '&p=' + purchaseDate.getTime(),
+        tracking_url: 'https://tekalotvpromo.vercel.app/track.html?order=' + encodeURIComponent(orderId) + '&p=' + purchaseDate.getTime(),
         status: calculatedStatus,
         status_history: [
           { status: 'RECEIVED', timestamp: purchaseIso },
