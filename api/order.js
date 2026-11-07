@@ -468,7 +468,7 @@ module.exports = async function handler(req, res) {
         customer_name: (req.query.name || 'Customer').trim(),
         customer_email: (req.query.to || req.query.email || '').trim(),
         customer_phone: '',
-        product_id: 'dm-4566h0dmf2',
+        product_id: 'dm-bkiejn6a4c',
         product_name: 'Hisense COMBO 55" Q6Q 4K QLED Smart TV + Soundbar',
         product_price: 1597,
         currency: 'ZAR',
