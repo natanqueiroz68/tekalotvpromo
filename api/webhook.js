@@ -231,12 +231,12 @@ function renderOrderPlainText(order) {
     `- Delivery Method: Courier`,
     ``,
     `ITEMS IN THIS ORDER:`,
-    `- 1x Hisense COMBO 55" Q6Q 4K QLED Smart TV + Soundbar - R 999.00`,
+    `- 1x Hisense COMBO 55" Q6Q 4K QLED Smart TV + Soundbar - R 1,597.00`,
     ``,
     `PAYMENT SUMMARY:`,
-    `- Subtotal: R 999.00`,
+    `- Subtotal: R 1,597.00`,
     `- Shipping: Free`,
-    `- Total Paid: R 999.00`,
+    `- Total Paid: R 1,597.00`,
     ``,
     `TRACK YOUR ORDER:`,
     `${trackUrl}`,
@@ -551,7 +551,7 @@ async function handler(req, res) {
                     || 'Hisense COMBO 55" Q6Q 4K QLED Smart TV + Soundbar';
   const productPrice = item.totalPrice != null
                     ? item.totalPrice
-                    : (item.price != null ? item.price : (payload.amount != null ? payload.amount : 999));
+                    : (item.price != null ? item.price : (payload.amount != null ? payload.amount : 1597));
   const currency     = item.currency || payload.currency || 'ZAR';
 
   // Product image: per-product env var or default
